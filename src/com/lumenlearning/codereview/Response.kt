@@ -1,3 +1,3 @@
 package com.lumenlearning.codereview
 
-data class Response (val key: String)
+data class Response (val keys: List<String>)
