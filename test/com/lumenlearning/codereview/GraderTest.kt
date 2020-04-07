@@ -1,9 +1,8 @@
 package com.lumenlearning.codereview
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 class GraderTest {
     val multipleChoiceQuestion = Question(QuestionType.MULTIPLE_CHOICE, "What is the answer?")
