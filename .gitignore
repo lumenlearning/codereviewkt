@@ -2,6 +2,10 @@
 /.idea
 /out
 /build
+/gradle
 *.iml
 *.ipr
 *.iws
+gradlew
+gradlew.bat
+.DS_Store
