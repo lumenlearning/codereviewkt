@@ -73,4 +73,24 @@ class GraderTest {
     fun testMulitpleDropdownsPartiallyCorrectChoice() {
         assertEquals(0.5, grade(multipleDropdownQuestion, multipleDropdownChoices, Response(listOf("A", "C"))))
     }
+
+    val clozeWithDropDownQuestion = Question(QuestionType.CLOZE_DRAG_AND_DROP, "For {target1}, then {target2}.")
+    val clozeWithDropDownChoices = listOf(
+        listOf(
+            Choice("A", "A", true, 1),
+            Choice("B", "B", true, 2)
+        )
+    )
+
+    @Test
+    @DisplayName("Cloze with drag and drop should return 1.0 if responses match correct choices in order")
+    fun testClozeDragAndDropInOrder() {
+        assertEquals(1.0, grade(clozeWithDropDownQuestion, clozeWithDropDownChoices, Response(listOf("A", "B"))))
+    }
+
+    @Test
+    @DisplayName("Cloze with drag and drop should return 0.5 if responses are out of order")
+    fun testClozeDragAndDropOutOfOrder() {
+        assertEquals(0.5, grade(clozeWithDropDownQuestion, clozeWithDropDownChoices, Response(listOf("B", "A"))))
+    }
 }

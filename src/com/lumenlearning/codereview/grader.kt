@@ -23,6 +23,25 @@ public fun grade(question: Question, choices: List<List<Choice>>, response: Resp
             }
         }.sum()
         return correctResponses / choices.size.toDouble()
+    } else if (question.questionType == QuestionType.CLOZE_DRAG_AND_DROP) {
+        var ccio = choices.first().sortedBy { it.correctOrder }
+        var ccioKeys = ccio.map { it.key }
+        if (ccioKeys == response.keys) {
+            return 1.0
+        } else {
+            var allKeysPresent = true
+            var ccioKeysSet = ccioKeys.toSet()
+            for (k in response.keys) {
+                if (!ccioKeysSet.contains(k)) {
+                    allKeysPresent = false
+                }
+            }
+            if (allKeysPresent) {
+                return 0.5
+            } else {
+                return 0.0
+            }
+        }
     } else {
         return 0.0
     }
